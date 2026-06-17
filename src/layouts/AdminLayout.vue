@@ -78,13 +78,14 @@
     <!-- 右侧内容区 -->
     <a-layout :style="{ marginLeft: collapsed ? '64px' : '208px', transition: 'margin-left 0.2s' }">
       <!-- 顶部 Header -->
-      <a-layout-header class="admin-header">
+      <a-layout-header class="admin-header" :style="{ left: collapsed ? '64px' : '208px' }">
         <div class="header-left">
           <span class="trigger" @click="collapsed = !collapsed">
             <MenuFoldOutlined v-if="!collapsed" />
             <MenuUnfoldOutlined v-else />
           </span>
-          <span class="header-title">学生运动会管理系统</span>
+          <img src="@/assets/logo.svg" alt="Logo" class="header-logo" />
+          <span class="header-title">顶点体育</span>
         </div>
 
         <div class="header-right">
@@ -122,7 +123,7 @@
           </a-breadcrumb-item>
           <a-breadcrumb-item v-for="item in breadcrumbItems" :key="item.path">
             <router-link v-if="item.to" :to="item.to">{{ item.title }}</router-link>
-            <span v-else>{{ item.title }}</span>
+            <span v-else class="breadcrumb-current">{{ item.title }}</span>
           </a-breadcrumb-item>
         </a-breadcrumb>
 
@@ -401,9 +402,11 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  position: sticky;
+  border-bottom: 1px solid @border-color;
+  position: fixed;
   top: 0;
+  right: 0;
+  transition: left 0.2s;
   z-index: 9;
   height: @header-height;
   line-height: @header-height;
@@ -423,6 +426,12 @@ onMounted(() => {
       &:hover {
         color: @primary-color;
       }
+    }
+
+    .header-logo {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
     }
 
     .header-title {
@@ -462,10 +471,16 @@ onMounted(() => {
 
 // 内容区
 .admin-content {
+  margin-top: @header-height;
   min-height: calc(100vh - @header-height);
 
   .content-breadcrumb {
     padding: @space-md @content-padding 0;
+
+    .breadcrumb-current {
+      font-weight: 600;
+      color: @text-color;
+    }
   }
 
   .content-header {

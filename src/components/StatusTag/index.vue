@@ -23,12 +23,15 @@ const props = defineProps<{
 
 // 设计文档 5.4 节完整状态色映射
 const statusMaps: Record<string, Record<string | number, { color: string; text: string }>> = {
-  // (1) 比赛状态
+  // (1) 比赛状态（支持 Integer 0-3 和仪表盘字符串 PENDING/IN_PROGRESS/COMPLETED）
   competition: {
     0: { color: 'default', text: '未开始' },
     1: { color: 'blue', text: '进行中' },
     2: { color: 'green', text: '已结束' },
     3: { color: 'red', text: '已取消' },
+    PENDING: { color: 'default', text: '未开始' },
+    IN_PROGRESS: { color: 'blue', text: '进行中' },
+    COMPLETED: { color: 'green', text: '已结束' },
   },
   // (2) 报名/参赛状态
   participation: {

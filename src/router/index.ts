@@ -25,13 +25,13 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'college',
         name: 'College',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/college/index.vue'),
         meta: { title: '学院管理' },
       },
       {
         path: 'athlete',
         name: 'Athlete',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/athlete/index.vue'),
         meta: { title: '运动员管理' },
       },
       {
@@ -109,8 +109,20 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: '/403',
+    name: 'Forbidden',
+    component: () => import('@/views/error/403.vue'),
+    meta: { title: '无权限', requiresAuth: false },
+  },
+  {
+    path: '/404',
+    name: 'NotFound',
+    component: () => import('@/views/error/404.vue'),
+    meta: { title: '页面不存在', requiresAuth: false },
+  },
+  {
     path: '/:pathMatch(.*)*',
-    redirect: '/dashboard',
+    redirect: '/404',
   },
 ]
 
@@ -119,7 +131,7 @@ const router = createRouter({
   routes,
 })
 
-const whiteList = ['/login']
+const whiteList = ['/login', '/403', '/404']
 
 router.beforeEach((to, _from, next) => {
   NProgress.start()
@@ -134,6 +146,26 @@ router.beforeEach((to, _from, next) => {
     }
   } else {
     if (token) {
+      // 角色权限检查
+      const requiredRole = to.meta?.requiredRole as number | undefined
+      if (requiredRole !== undefined) {
+        const userInfoStr = localStorage.getItem('userInfo')
+        if (userInfoStr) {
+          try {
+            const userInfo = JSON.parse(userInfoStr)
+            if (userInfo.role !== requiredRole) {
+              next('/403')
+              return
+            }
+          } catch {
+            next('/403')
+            return
+          }
+        } else {
+          next('/403')
+          return
+        }
+      }
       next()
     } else {
       next(`/login?redirect=${to.path}`)

@@ -5,7 +5,7 @@
       <img src="@/assets/logo.svg" alt="Logo" class="logo" />
 
       <!-- 标题 -->
-      <h1 class="login-title">学生运动会管理系统</h1>
+      <h1 class="login-title">顶点体育</h1>
 
       <!-- 错误提示 -->
       <a-alert
