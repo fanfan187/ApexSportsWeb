@@ -16,6 +16,7 @@ const props = defineProps<{
     | 'gender'
     | 'eventType'
     | 'eventCategory'
+    | 'venueType'
     | 'userRole'
     | 'round'
     | 'recordType'
@@ -72,6 +73,12 @@ const statusMaps: Record<string, Record<string | number, { color: string; text: 
   eventCategory: {
     1: { color: 'blue', text: '径赛' },
     2: { color: 'green', text: '田赛' },
+  },
+  // 场地类型（1-径赛/2-田赛/3-综合）
+  venueType: {
+    1: { color: 'blue', text: '径赛场地' },
+    2: { color: 'green', text: '田赛场地' },
+    3: { color: 'purple', text: '综合场地' },
   },
   // (9) 用户角色
   userRole: {

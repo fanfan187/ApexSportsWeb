@@ -43,7 +43,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'event',
         name: 'Event',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/event/index.vue'),
         meta: { title: '比赛项目管理' },
       },
       {
@@ -55,7 +55,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'venue',
         name: 'Venue',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/venue/index.vue'),
         meta: { title: '场地管理' },
       },
       {
