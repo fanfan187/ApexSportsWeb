@@ -49,7 +49,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'referee',
         name: 'Referee',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/referee/index.vue'),
         meta: { title: '裁判管理' },
       },
       {

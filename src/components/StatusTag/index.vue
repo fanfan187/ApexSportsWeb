@@ -20,6 +20,9 @@ const props = defineProps<{
     | 'userRole'
     | 'round'
     | 'recordType'
+    | 'refereeRole'
+    | 'competitionStatus'
+    | 'refereeStatus'
 }>()
 
 // 设计文档 5.4 节完整状态色映射
@@ -95,6 +98,25 @@ const statusMaps: Record<string, Record<string | number, { color: string; text: 
     1: { color: 'blue', text: '校记录' },
     2: { color: 'purple', text: '市记录' },
     3: { color: 'gold', text: '省记录' },
+  },
+  // (12) 裁判职务（as_referee_assignment.role 1-4）
+  refereeRole: {
+    1: { color: 'red', text: '主裁判' },
+    2: { color: 'orange', text: '副裁判' },
+    3: { color: 'blue', text: '计时员' },
+    4: { color: 'green', text: '记录员' },
+  },
+  // (13) 比赛状态（as_competition.status 0-3，独立于 competition 的字符串兼容版本）
+  competitionStatus: {
+    0: { color: 'default', text: '未开始' },
+    1: { color: 'processing', text: '进行中' },
+    2: { color: 'success', text: '已结束' },
+    3: { color: 'error', text: '已取消' },
+  },
+  // (14) 裁判状态（as_referee.status 0-1，主列表用）
+  refereeStatus: {
+    0: { color: 'default', text: '休息' },
+    1: { color: 'success', text: '可用' },
   },
 }
 
