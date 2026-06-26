@@ -9,7 +9,6 @@ const props = defineProps<{
   status: number | string
   type:
     | 'competition'
-    | 'participation'
     | 'enable'
     | 'equipment'
     | 'record'
@@ -36,14 +35,6 @@ const statusMaps: Record<string, Record<string | number, { color: string; text: 
     PENDING: { color: 'default', text: '未开始' },
     IN_PROGRESS: { color: 'blue', text: '进行中' },
     COMPLETED: { color: 'green', text: '已结束' },
-  },
-  // (2) 报名/参赛状态
-  participation: {
-    0: { color: 'default', text: '已报名' },
-    1: { color: 'blue', text: '检录通过' },
-    2: { color: 'green', text: '已参赛' },
-    3: { color: 'orange', text: '弃权' },
-    4: { color: 'red', text: '取消资格' },
   },
   // (3) 通用启用/禁用
   enable: {
