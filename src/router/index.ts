@@ -67,13 +67,13 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'registration/individual',
         name: 'RegIndividual',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/participation/index.vue'),
         meta: { title: '个人报名' },
       },
       {
         path: 'registration/team',
         name: 'RegTeam',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/team-participation/index.vue'),
         meta: { title: '团体报名' },
       },
       {
