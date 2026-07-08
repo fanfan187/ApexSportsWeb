@@ -79,14 +79,20 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'schedule',
         name: 'Schedule',
-        component: () => import('@/views/dashboard/index.vue'),
-        meta: { title: '赛程安排' },
+        component: () => import('@/views/schedule/index.vue'),
+        meta: { title: '赛程管理' },
       },
       {
         path: 'schedule/booklet',
         name: 'ScheduleBooklet',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/schedule/booklet.vue'),
         meta: { title: '秩序册' },
+      },
+      {
+        path: 'schedule/:id',
+        name: 'ScheduleDetail',
+        component: () => import('@/views/schedule/detail.vue'),
+        meta: { title: '场次详情' },
       },
       {
         path: 'score',
