@@ -121,7 +121,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'record',
         name: 'Record',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/record/index.vue'),
         meta: { title: '历史记录' },
       },
     ],
