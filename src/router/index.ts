@@ -97,8 +97,20 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'score',
         name: 'Score',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/score/index.vue'),
         meta: { title: '成绩录入' },
+      },
+      {
+        path: 'score/batch',
+        name: 'ScoreBatch',
+        component: () => import('@/views/score/batch.vue'),
+        meta: { title: '批量录入成绩' },
+      },
+      {
+        path: 'score/detail/:competitionId',
+        name: 'ScoreDetail',
+        component: () => import('@/views/score/detail.vue'),
+        meta: { title: '比赛成绩详情' },
       },
       {
         path: 'ranking',
