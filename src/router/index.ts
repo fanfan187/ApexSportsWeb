@@ -115,8 +115,14 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'ranking',
         name: 'Ranking',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/views/ranking/index.vue'),
         meta: { title: '学院积分排名' },
+      },
+      {
+        path: 'ranking/:collegeId',
+        name: 'RankingDetail',
+        component: () => import('@/views/ranking/detail.vue'),
+        meta: { title: '学院积分详情' },
       },
       {
         path: 'record',
