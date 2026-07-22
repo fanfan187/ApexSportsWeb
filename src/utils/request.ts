@@ -1,6 +1,7 @@
 import axios from 'axios'
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { message } from 'ant-design-vue'
+import router from '@/router'
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -28,11 +29,11 @@ request.interceptors.response.use(
     }
     // 业务错误细分处理
     if (code === 40101) {
-      // 未登录或 Token 过期 → 清除凭证并跳转登录页
+      // 未登录或 Token 过期 → 清除凭证并跳转登录页（SPA 内导航，避免全页刷新吞掉 toast）
       localStorage.removeItem('token')
       localStorage.removeItem('userInfo')
-      window.location.href = '/login'
       message.error(msg || '登录已过期，请重新登录')
+      router.push('/login')
     } else if (code === 40301) {
       // 无权限
       message.error(msg || '您没有操作权限')
@@ -45,9 +46,8 @@ request.interceptors.response.use(
     if (error.response?.status === 401) {
       localStorage.removeItem('token')
       localStorage.removeItem('userInfo')
-      // 延迟跳转，避免当前请求还在进行中
-      window.location.href = '/login'
       message.error('登录已过期，请重新登录')
+      router.push('/login')
     } else {
       const msg = error.response?.data?.message || '网络错误，请稍后重试'
       message.error(msg)
