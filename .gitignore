@@ -41,3 +41,10 @@ docs/
 
 # OpenCode 编排元数据
 .omo/
+
+# E2E test artifacts
+test-results/
+playwright-report/
+
+# Bun (project uses npm)
+bun.lock
